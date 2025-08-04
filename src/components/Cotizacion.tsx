@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import logo from '../assets/logos/logo.svg';
+import FloatingPDFButton from './FloatingPDFButton';
 
 export interface ServicioItem {
   id: string;
@@ -45,6 +46,8 @@ interface CotizacionProps {
 }
 
 const Cotizacion: React.FC<CotizacionProps> = ({ data }) => {
+  const printRef = useRef<HTMLDivElement>(null);
+  
   const styles = `
     * {
       margin: 0;
@@ -284,6 +287,47 @@ const Cotizacion: React.FC<CotizacionProps> = ({ data }) => {
       margin: 20px 0 10px auto;
     }
 
+    @media print {
+      .cotizacion-body {
+        background: white !important;
+        padding: 0 !important;
+        min-height: auto !important;
+      }
+
+      .invoice-container {
+        max-width: none !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+      }
+
+      .header {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .items-table {
+        page-break-inside: auto;
+      }
+
+      .items-table tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+      }
+
+      .terms {
+        page-break-inside: avoid;
+      }
+
+      .signature-section {
+        page-break-inside: avoid;
+      }
+
+      .footer {
+        page-break-inside: avoid;
+      }
+    }
+
     @media (max-width: 768px) {
       .invoice-header {
         flex-direction: column;
@@ -308,7 +352,7 @@ const Cotizacion: React.FC<CotizacionProps> = ({ data }) => {
     <>
       <style dangerouslySetInnerHTML={{ __html: styles }} />
       <div className="cotizacion-body">
-        <div className="invoice-container">
+        <div className="invoice-container" id="cotizacion-content" ref={printRef}>
           <div className="header">
             <div className="logo">Hidro_coding</div>
             <img src={logo} alt="Company Logo" className="company-logo" />
@@ -416,6 +460,10 @@ const Cotizacion: React.FC<CotizacionProps> = ({ data }) => {
             </div>
           </div>
         </div>
+        <FloatingPDFButton 
+          printRef={printRef}
+          fileName={`cotizacion-${data.cliente.nombre.replace(/\s+/g, '-').toLowerCase()}`}
+        />
       </div>
     </>
   );
