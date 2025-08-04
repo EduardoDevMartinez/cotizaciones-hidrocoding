@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
 interface FloatingPDFButtonProps {
@@ -10,6 +10,15 @@ const FloatingPDFButton: React.FC<FloatingPDFButtonProps> = ({
   printRef,
   fileName = 'cotizacion'
 }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const handlePrint = useReactToPrint({
     contentRef: printRef,
     documentTitle: fileName,
@@ -57,6 +66,15 @@ const FloatingPDFButton: React.FC<FloatingPDFButtonProps> = ({
     zIndex: 1000,
   };
 
+  const mobileButtonStyles: React.CSSProperties = {
+    ...buttonStyles,
+    bottom: '20px',
+    right: '20px',
+    width: '50px',
+    height: '50px',
+    fontSize: '20px',
+  };
+
   const hoverStyles: React.CSSProperties = {
     transform: 'scale(1.1)',
     backgroundColor: '#0097a7',
@@ -66,17 +84,19 @@ const FloatingPDFButton: React.FC<FloatingPDFButtonProps> = ({
   return (
     <button
       onClick={handlePrint}
-      style={buttonStyles}
+      style={isMobile ? mobileButtonStyles : buttonStyles}
       onMouseEnter={(e) => {
-        Object.assign(e.currentTarget.style, hoverStyles);
+        if (!isMobile) {
+          Object.assign(e.currentTarget.style, hoverStyles);
+        }
       }}
       onMouseLeave={(e) => {
-        Object.assign(e.currentTarget.style, buttonStyles);
+        Object.assign(e.currentTarget.style, isMobile ? mobileButtonStyles : buttonStyles);
       }}
       title="Descargar PDF"
       aria-label="Descargar cotización en PDF"
     >
-      <span style={{ fontSize: '12px', fontWeight: 'bold' }}>PDF</span>
+      <span style={{ fontSize: isMobile ? '10px' : '12px', fontWeight: 'bold' }}>PDF</span>
     </button>
   );
 };

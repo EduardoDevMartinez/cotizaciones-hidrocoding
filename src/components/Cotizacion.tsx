@@ -62,6 +62,12 @@ const Cotizacion: React.FC<CotizacionProps> = ({ data }) => {
       min-height: 100vh;
     }
 
+    @media (max-width: 480px) {
+      .cotizacion-body {
+        padding: 10px;
+      }
+    }
+
     .invoice-container {
       max-width: 800px;
       margin: 0 auto;
@@ -79,6 +85,21 @@ const Cotizacion: React.FC<CotizacionProps> = ({ data }) => {
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 20px;
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        padding: 15px;
+      }
     }
 
     .header::after {
@@ -104,6 +125,29 @@ const Cotizacion: React.FC<CotizacionProps> = ({ data }) => {
     .company-logo {
       width: 80px;
       height: 80px;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 24px;
+        margin-bottom: 0;
+      }
+      
+      .company-logo {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 20px;
+      }
+      
+      .company-logo {
+        width: 50px;
+        height: 50px;
+      }
     }
 
     .logo::before {
@@ -145,6 +189,18 @@ const Cotizacion: React.FC<CotizacionProps> = ({ data }) => {
       color: #333;
     }
 
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-content {
+        padding: 15px;
+      }
+    }
+
     .invoice-header {
       display: flex;
       justify-content: space-between;
@@ -180,6 +236,19 @@ const Cotizacion: React.FC<CotizacionProps> = ({ data }) => {
       margin: 20px 0;
     }
 
+    @media (max-width: 768px) {
+      .total-amount {
+        font-size: 28px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .total-amount {
+        font-size: 24px;
+      }
+    }
+
     .items-table {
       width: 100%;
       border-collapse: collapse;
@@ -209,6 +278,75 @@ const Cotizacion: React.FC<CotizacionProps> = ({ data }) => {
 
     .items-table tr:hover {
       background: #e1f5fe;
+    }
+
+    @media (max-width: 768px) {
+      .items-table {
+        font-size: 14px;
+      }
+      
+      .items-table th,
+      .items-table td {
+        padding: 10px 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .items-table {
+        font-size: 12px;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      
+      .items-table thead {
+        display: block;
+      }
+      
+      .items-table tbody {
+        display: block;
+      }
+      
+      .items-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        background: white;
+        white-space: normal;
+      }
+      
+      .items-table th {
+        display: none;
+      }
+      
+      .items-table td {
+        display: block;
+        text-align: left !important;
+        border: none;
+        padding: 5px 0;
+        position: relative;
+        padding-left: 30%;
+      }
+      
+      .items-table td:before {
+        position: absolute;
+        left: 6px;
+        width: 25%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #00bcd4;
+      }
+      
+      .items-table td:nth-child(1):before {
+        content: "ID: ";
+      }
+      
+      .items-table td:nth-child(2):before {
+        content: "Servicio: ";
+      }
     }
 
     .summary-section {
