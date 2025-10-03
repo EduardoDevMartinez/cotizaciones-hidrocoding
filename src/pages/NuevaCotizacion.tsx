@@ -26,6 +26,14 @@ const NuevaCotizacion: React.FC = () => {
   const [servicios, setServicios] = useState<ServicioItem[]>([]);
   const [notas, setNotas] = useState('');
   const [descuento, setDescuento] = useState(0);
+  const [terminos, setTerminos] = useState({
+    tiempoEntrega: '',
+    formaPago: '',
+    incluye: '',
+    noIncluye: '',
+    validez: '',
+    garantia: ''
+  });
   const [mostrarModalServicio, setMostrarModalServicio] = useState(false);
   const [servicioEnEdicion, setServicioEnEdicion] = useState<string | null>(null);
   const [servicioTemp, setServicioTemp] = useState<ServicioItem>({
@@ -52,6 +60,14 @@ const NuevaCotizacion: React.FC = () => {
           setServicios(cotizacion.servicios);
           setNotas(cotizacion.notas || '');
           setDescuento(cotizacion.descuento);
+          setTerminos({
+            tiempoEntrega: cotizacion.terminos.tiempoEntrega,
+            formaPago: cotizacion.terminos.formaPago,
+            incluye: cotizacion.terminos.incluye,
+            noIncluye: cotizacion.terminos.noIncluye,
+            validez: cotizacion.terminos.validez,
+            garantia: cotizacion.terminos.garantia || ''
+          });
         }
       } else {
         const num = await generarNumeroCotizacion();
@@ -59,11 +75,20 @@ const NuevaCotizacion: React.FC = () => {
         const fechaVenc = new Date();
         fechaVenc.setDate(fechaVenc.getDate() + 30);
         setFechaVencimiento(fechaVenc.toISOString().split('T')[0]);
+        // Cargar términos por defecto de la configuración
+        setTerminos({
+          tiempoEntrega: configuracion.terminos_defecto.tiempoEntrega,
+          formaPago: configuracion.terminos_defecto.formaPago,
+          incluye: configuracion.terminos_defecto.incluye,
+          noIncluye: configuracion.terminos_defecto.noIncluye,
+          validez: configuracion.terminos_defecto.validez,
+          garantia: configuracion.terminos_defecto.garantia || ''
+        });
       }
     };
 
     loadData();
-  }, [id]);
+  }, [id, configuracion]);
 
   const abrirModalServicio = () => {
     setServicioTemp({
@@ -168,7 +193,7 @@ const NuevaCotizacion: React.FC = () => {
         impuestos: totales.impuestos,
         total: totales.total,
         metodosPago: configuracion.metodos_pago_defecto,
-        terminos: configuracion.terminos_defecto,
+        terminos: terminos as any,
         notas,
         desarrollador: configuracion.desarrollador,
         createdAt,
@@ -439,6 +464,68 @@ const NuevaCotizacion: React.FC = () => {
               rows={4}
               placeholder="Notas adicionales para esta cotización..."
             />
+          </div>
+
+          <div className="form-section full-width">
+            <h2>Términos y Condiciones</h2>
+            <div className="form-group">
+              <label>Tiempo de Entrega</label>
+              <input
+                type="text"
+                value={terminos.tiempoEntrega}
+                onChange={(e) => setTerminos({ ...terminos, tiempoEntrega: e.target.value })}
+                placeholder="Ej: 30 días hábiles"
+              />
+            </div>
+            <div className="form-group">
+              <label>Forma de Pago</label>
+              <textarea
+                value={terminos.formaPago}
+                onChange={(e) => setTerminos({ ...terminos, formaPago: e.target.value })}
+                rows={2}
+                placeholder="Ej: 50% al inicio y 50% al finalizar"
+              />
+            </div>
+            <div className="form-row">
+              <div className="form-group">
+                <label>Incluye</label>
+                <textarea
+                  value={terminos.incluye}
+                  onChange={(e) => setTerminos({ ...terminos, incluye: e.target.value })}
+                  rows={3}
+                  placeholder="Qué incluye este servicio..."
+                />
+              </div>
+              <div className="form-group">
+                <label>No Incluye</label>
+                <textarea
+                  value={terminos.noIncluye}
+                  onChange={(e) => setTerminos({ ...terminos, noIncluye: e.target.value })}
+                  rows={3}
+                  placeholder="Qué no incluye este servicio..."
+                />
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="form-group">
+                <label>Validez de la Cotización</label>
+                <input
+                  type="text"
+                  value={terminos.validez}
+                  onChange={(e) => setTerminos({ ...terminos, validez: e.target.value })}
+                  placeholder="Ej: 30 días naturales"
+                />
+              </div>
+              <div className="form-group">
+                <label>Garantía (Opcional)</label>
+                <input
+                  type="text"
+                  value={terminos.garantia}
+                  onChange={(e) => setTerminos({ ...terminos, garantia: e.target.value })}
+                  placeholder="Ej: 3 meses de garantía"
+                />
+              </div>
+            </div>
           </div>
         </div>
 

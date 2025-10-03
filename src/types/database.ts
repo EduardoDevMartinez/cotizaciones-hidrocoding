@@ -99,6 +99,12 @@ export interface Database {
           total: number
           notas: string | null
           terminos: Json | null
+          tiempo_entrega: string | null
+          forma_pago: string | null
+          incluye: string | null
+          no_incluye: string | null
+          validez: string | null
+          garantia: string | null
           metodos_pago: Json | null
           desarrollador: Json | null
           public_token: string | null
@@ -124,6 +130,12 @@ export interface Database {
           total: number
           notas?: string | null
           terminos?: Json | null
+          tiempo_entrega?: string | null
+          forma_pago?: string | null
+          incluye?: string | null
+          no_incluye?: string | null
+          validez?: string | null
+          garantia?: string | null
           metodos_pago?: Json | null
           desarrollador?: Json | null
           public_token?: string | null
@@ -149,6 +161,12 @@ export interface Database {
           total?: number
           notas?: string | null
           terminos?: Json | null
+          tiempo_entrega?: string | null
+          forma_pago?: string | null
+          incluye?: string | null
+          no_incluye?: string | null
+          validez?: string | null
+          garantia?: string | null
           metodos_pago?: Json | null
           desarrollador?: Json | null
           public_token?: string | null

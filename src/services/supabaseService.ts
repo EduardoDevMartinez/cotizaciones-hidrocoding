@@ -64,7 +64,12 @@ export const cotizacionesService = {
       impuestos: cotizacion.impuestos,
       total: cotizacion.total,
       notas: cotizacion.notas || null,
-      terminos: cotizacion.terminos as any,
+      tiempo_entrega: cotizacion.terminos.tiempoEntrega || null,
+      forma_pago: cotizacion.terminos.formaPago || null,
+      incluye: cotizacion.terminos.incluye || null,
+      no_incluye: cotizacion.terminos.noIncluye || null,
+      validez: cotizacion.terminos.validez || null,
+      garantia: cotizacion.terminos.garantia || null,
       metodos_pago: cotizacion.metodosPago as any,
       desarrollador: cotizacion.desarrollador as any
     };
@@ -118,7 +123,12 @@ export const cotizacionesService = {
       impuestos: cotizacion.impuestos,
       total: cotizacion.total,
       notas: cotizacion.notas || null,
-      terminos: cotizacion.terminos,
+      tiempo_entrega: cotizacion.terminos.tiempoEntrega || null,
+      forma_pago: cotizacion.terminos.formaPago || null,
+      incluye: cotizacion.terminos.incluye || null,
+      no_incluye: cotizacion.terminos.noIncluye || null,
+      validez: cotizacion.terminos.validez || null,
+      garantia: cotizacion.terminos.garantia || null,
       metodos_pago: cotizacion.metodosPago,
       desarrollador: cotizacion.desarrollador
     };
@@ -404,7 +414,14 @@ function cotizacionRowToCotizacion(row: CotizacionRow & { servicios_cotizacion: 
     impuestos: Number(row.impuestos),
     total: Number(row.total),
     metodosPago: (row.metodos_pago || []) as any,
-    terminos: row.terminos as any,
+    terminos: {
+      tiempoEntrega: row.tiempo_entrega || '',
+      formaPago: row.forma_pago || '',
+      incluye: row.incluye || '',
+      noIncluye: row.no_incluye || '',
+      validez: row.validez || '',
+      garantia: row.garantia || ''
+    },
     notas: row.notas || undefined,
     desarrollador: row.desarrollador as any,
     createdAt: row.created_at,
