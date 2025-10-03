@@ -6,7 +6,11 @@
       "Bash(npm run dev:*)",
       "Bash(npm run build:*)",
       "Bash(npm run lint)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "mcp__chrome-devtools__take_snapshot",
+      "mcp__chrome-devtools__click",
+      "mcp__chrome-devtools__take_screenshot",
+      "mcp__chrome-devtools__navigate_page"
     ],
     "deny": []
   }
