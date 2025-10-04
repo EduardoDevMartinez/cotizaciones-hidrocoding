@@ -7,6 +7,7 @@ export interface ServicioItem {
   title: string;
   description: string;
   cantidad: number;
+  precio: number;
 }
 
 export interface MetodoPago {
@@ -93,7 +94,9 @@ const Cotizacion: React.FC<CotizacionProps> = ({ data }) => {
               <tr className="bg-gradient-to-r from-cyan-500 to-cyan-600">
                 <th className="text-white p-4 text-left font-bold">ID</th>
                 <th className="text-white p-4 text-left font-bold">DESCRIPCIÓN DEL SERVICIO</th>
-                <th className="text-white p-4 text-center font-bold">HORAS</th>
+                <th className="text-white p-4 text-center font-bold">CANTIDAD</th>
+                <th className="text-white p-4 text-center font-bold">PRECIO UNIT.</th>
+                <th className="text-white p-4 text-center font-bold">TOTAL</th>
               </tr>
             </thead>
             <tbody>
@@ -105,12 +108,18 @@ const Cotizacion: React.FC<CotizacionProps> = ({ data }) => {
                     {servicio.description}
                   </td>
                   <td className="p-4 border-b border-gray-200 text-gray-800 text-center font-semibold">{servicio.cantidad}</td>
+                  <td className="p-4 border-b border-gray-200 text-gray-800 text-center font-semibold">
+                    ${servicio.precio.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
+                  </td>
+                  <td className="p-4 border-b border-gray-200 text-gray-800 text-center font-bold">
+                    ${(servicio.cantidad * servicio.precio).toLocaleString('es-MX', { minimumFractionDigits: 2 })}
+                  </td>
                 </tr>
               ))}
               <tr className="bg-cyan-50 border-t-2 border-cyan-500">
-                <td colSpan={2} className="p-4 text-right font-bold text-gray-800">TOTAL DE HORAS:</td>
+                <td colSpan={4} className="p-4 text-right font-bold text-gray-800">TOTAL GENERAL:</td>
                 <td className="p-4 text-center font-bold text-cyan-600 text-lg">
-                  {data.servicios.reduce((sum, servicio) => sum + servicio.cantidad, 0)} hrs
+                  ${data.servicios.reduce((sum, servicio) => sum + (servicio.cantidad * servicio.precio), 0).toLocaleString('es-MX', { minimumFractionDigits: 2 })}
                 </td>
               </tr>
             </tbody>
