@@ -4,6 +4,7 @@ import { useReactToPrint } from 'react-to-print';
 import { useCotizaciones } from '../context/CotizacionesContext';
 import { cotizacionesService } from '../services/supabaseService';
 import Cotizacion from '../components/Cotizacion';
+import Loading from '../components/Loading';
 import type { CotizacionData } from '../components/Cotizacion';
 import '../styles/DetalleCotizacion.css';
 
@@ -102,19 +103,7 @@ const DetalleCotizacion: React.FC = () => {
   };
 
   if (loading) {
-    return (
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '80vh'
-      }}>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '48px', marginBottom: '20px' }}>⏳</div>
-          <p style={{ color: '#546e7a', fontSize: '18px' }}>Cargando cotización...</p>
-        </div>
-      </div>
-    );
+    return <Loading message="Cargando cotización..." />;
   }
 
   if (!cotizacion) {

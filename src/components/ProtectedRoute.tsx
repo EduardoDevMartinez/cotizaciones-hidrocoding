@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Loading from './Loading';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -10,28 +11,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { user, loading } = useAuth();
 
   if (loading) {
-    return (
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh',
-        background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'
-      }}>
-        <div style={{
-          textAlign: 'center'
-        }}>
-          <div style={{
-            fontSize: '48px',
-            marginBottom: '20px'
-          }}>⏳</div>
-          <p style={{
-            color: '#546e7a',
-            fontSize: '18px'
-          }}>Cargando...</p>
-        </div>
-      </div>
-    );
+    return <Loading message="Verificando sesión..." />;
   }
 
   if (!user) {

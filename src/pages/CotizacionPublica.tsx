@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { cotizacionesService } from '../services/supabaseService';
 import Cotizacion from '../components/Cotizacion';
+import Loading from '../components/Loading';
 import type { CotizacionData } from '../components/Cotizacion';
 
 const CotizacionPublica: React.FC = () => {
@@ -33,20 +34,7 @@ const CotizacionPublica: React.FC = () => {
   }, [token]);
 
   if (loading) {
-    return (
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh',
-        backgroundColor: '#f5f5f5'
-      }}>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '48px', marginBottom: '20px' }}>⏳</div>
-          <p style={{ color: '#546e7a', fontSize: '18px' }}>Cargando cotización...</p>
-        </div>
-      </div>
-    );
+    return <Loading message="Cargando cotización..." />;
   }
 
   if (error || !cotizacion) {
