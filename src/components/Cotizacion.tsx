@@ -109,17 +109,17 @@ const Cotizacion: React.FC<CotizacionProps> = ({ data }) => {
                   </td>
                   <td className="p-4 border-b border-gray-200 text-gray-800 text-center font-semibold">{servicio.cantidad}</td>
                   <td className="p-4 border-b border-gray-200 text-gray-800 text-center font-semibold">
-                    ${servicio.precio.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
+                    ${(servicio.precio ?? 0).toLocaleString('es-MX', { minimumFractionDigits: 2 })}
                   </td>
                   <td className="p-4 border-b border-gray-200 text-gray-800 text-center font-bold">
-                    ${servicio.precio.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
+                    ${(servicio.precio ?? 0).toLocaleString('es-MX', { minimumFractionDigits: 2 })}
                   </td>
                 </tr>
               ))}
               <tr className="bg-cyan-50 border-t-2 border-cyan-500">
                 <td colSpan={4} className="p-4 text-right font-bold text-gray-800">TOTAL GENERAL:</td>
                 <td className="p-4 text-center font-bold text-cyan-600 text-lg">
-                  ${data.servicios.reduce((sum, servicio) => sum + servicio.precio, 0).toLocaleString('es-MX', { minimumFractionDigits: 2 })}
+                  ${data.servicios.reduce((sum, servicio) => sum + (servicio.precio ?? 0), 0).toLocaleString('es-MX', { minimumFractionDigits: 2 })}
                 </td>
               </tr>
             </tbody>
