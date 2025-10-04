@@ -160,7 +160,8 @@ const DetalleCotizacion: React.FC = () => {
       id: String(index + 1).padStart(3, '0'),
       title: s.nombre,
       description: s.descripcion,
-      cantidad: s.cantidad
+      cantidad: s.cantidad,
+      precio: s.precio || 0
     })),
     metodosPago: cotizacion.metodosPago,
     terminos: cotizacion.terminos
