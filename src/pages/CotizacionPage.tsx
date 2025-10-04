@@ -21,38 +21,66 @@ const CotizacionPage: React.FC = () => {
     servicios: [
       {
         id: "001",
-        title: "Diseño Web Responsivo",
-        description: "Diseño personalizado para escritorio, tabletas y móviles con identidad visual profesional"
+        nombre: "Diseño Web Responsivo",
+        descripcion: "Diseño personalizado para escritorio, tabletas y móviles con identidad visual profesional",
+        precio: 3000,
+        categoria: "diseno" as const,
+        unidad: "proyecto" as const,
+        cantidad: 1
       },
       {
         id: "002",
-        title: "Desarrollo Frontend",
-        description: "Programación HTML5, CSS3, JavaScript con animaciones y efectos interactivos"
+        nombre: "Desarrollo Frontend",
+        descripcion: "Programación HTML5, CSS3, JavaScript con animaciones y efectos interactivos",
+        precio: 5000,
+        categoria: "desarrollo-web" as const,
+        unidad: "proyecto" as const,
+        cantidad: 1
       },
       {
         id: "003",
-        title: "Integración OpenTable",
-        description: "Sistema de reservaciones en línea integrado con la plataforma OpenTable"
+        nombre: "Integración OpenTable",
+        descripcion: "Sistema de reservaciones en línea integrado con la plataforma OpenTable",
+        precio: 2000,
+        categoria: "integracion" as const,
+        unidad: "proyecto" as const,
+        cantidad: 1
       },
       {
         id: "004",
-        title: "Integración Ackroo",
-        description: "Sistema de tarjetas de regalo digitales integrado con Ackroo"
+        nombre: "Integración Ackroo",
+        descripcion: "Sistema de tarjetas de regalo digitales integrado con Ackroo",
+        precio: 2000,
+        categoria: "integracion" as const,
+        unidad: "proyecto" as const,
+        cantidad: 1
       },
       {
         id: "005",
-        title: "Sistema Multilingüe",
-        description: "Soporte para 3 idiomas: español, inglés y francés con navegación intuitiva"
+        nombre: "Sistema Multilingüe",
+        descripcion: "Soporte para 3 idiomas: español, inglés y francés con navegación intuitiva",
+        precio: 3000,
+        categoria: "desarrollo-web" as const,
+        unidad: "proyecto" as const,
+        cantidad: 1
       },
       {
         id: "006",
-        title: "Secciones de Menú",
-        description: "Catálogos digitales para coctelería, comida, mezcales y vinos con galería"
+        nombre: "Secciones de Menú",
+        descripcion: "Catálogos digitales para coctelería, comida, mezcales y vinos con galería",
+        precio: 3000,
+        categoria: "desarrollo-web" as const,
+        unidad: "proyecto" as const,
+        cantidad: 1
       },
       {
         id: "007",
-        title: "Optimización SEO",
-        description: "Meta etiquetas, sitemap, robots.txt y optimización de velocidad"
+        nombre: "Optimización SEO",
+        descripcion: "Meta etiquetas, sitemap, robots.txt y optimización de velocidad",
+        precio: 2000,
+        categoria: "consultoria" as const,
+        unidad: "proyecto" as const,
+        cantidad: 1
       }
     ],
     metodosPago: [

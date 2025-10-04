@@ -41,7 +41,7 @@ const NuevaCotizacion: React.FC = () => {
     nombre: '',
     descripcion: '',
     precio: 0,
-    categoria: 'desarrollo',
+    categoria: 'desarrollo-web',
     unidad: 'hora',
     cantidad: 1,
     tiempo: ''
@@ -96,7 +96,7 @@ const NuevaCotizacion: React.FC = () => {
       nombre: '',
       descripcion: '',
       precio: 0,
-      categoria: 'desarrollo',
+      categoria: 'desarrollo-web',
       unidad: 'hora',
       cantidad: 1,
       tiempo: ''
@@ -132,12 +132,6 @@ const NuevaCotizacion: React.FC = () => {
 
     setMostrarModalServicio(false);
     setServicioEnEdicion(null);
-  };
-
-  const actualizarServicio = (id: string, campo: keyof ServicioItem, valor: any) => {
-    setServicios(servicios.map(s =>
-      s.id === id ? { ...s, [campo]: valor } : s
-    ));
   };
 
   const eliminarServicio = (id: string) => {
