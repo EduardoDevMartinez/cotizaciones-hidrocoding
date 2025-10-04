@@ -9,7 +9,6 @@ import NuevaCotizacion from './pages/NuevaCotizacion';
 import DetalleCotizacion from './pages/DetalleCotizacion';
 import CotizacionPublica from './pages/CotizacionPublica';
 import Login from './pages/Login';
-import Register from './pages/Register';
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
           <Routes>
             {/* Rutas públicas */}
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
             <Route path="/cotizacion/publica/:token" element={<CotizacionPublica />} />
 
             {/* Rutas protegidas */}

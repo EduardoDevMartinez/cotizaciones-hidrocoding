@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../styles/Auth.css';
 
@@ -83,12 +83,6 @@ const Login: React.FC = () => {
             {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
           </button>
         </form>
-
-        <div className="auth-footer">
-          <p>
-            ¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link>
-          </p>
-        </div>
       </div>
     </div>
   );
